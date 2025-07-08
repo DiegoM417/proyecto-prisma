@@ -10,7 +10,7 @@ generator client {
 datasource db {
   provider  = "postgresql"
   url  	    = env("DATABASE_URL")
-  directUrl = env("DATABASE_URL_UNPOOLED") 
+  
 }
 
 model User {
@@ -20,9 +20,10 @@ model User {
   todos    Todo[]
 }
 
-model Todo {
+model Todo { 
   id        Int     @id @default(autoincrement())
   label     String
+  description String?
   completed Boolean @default(false)
   userId    Int
   user      User    @relation(fields: [userId], references: [id])
